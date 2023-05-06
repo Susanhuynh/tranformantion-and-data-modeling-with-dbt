@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__products
+    description: Table of 1 row per order
+    columns: 
+      - name: product_id
+        description: "" 
+        tests:
+        - not_null
+        - unique
+      
+      - name: cost
+        description: ""
+
+      - name: retail_price
+        description: ""
+
+      - name: department
+        description: ""
+        tests:
+          - not_null
