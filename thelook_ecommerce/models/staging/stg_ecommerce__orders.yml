@@ -28,21 +28,29 @@ models:
                 - Returned
 
       - name: created_at
-        description: ""
+        description: "When the order was created"
         tests:
           - not_null
 
       - name: returned_at
-        description: ""
+        description: "When the order was returned"
         tests:
-          - not_null
+          - not_null:
+              where: "status = 'Returned'"
 
       - name: shipped_at 
-        description: ""
+        description: "When the order was shipped"
         tests:
-          - not_null
+          - not_null:
+              where: "delivered_at IS NOT NULL OR status = 'Shipped'"
+      
+      - name: delivered_at
+        description: "When the order was delivered"
+        tests:
+          - not_null:
+              where: "returned_at IS NOT NULL or status = 'Complete'"
       
       - name: num_items_ordered
-        description: ""
+        description: "Number of item in the order"
         tests:
           - not_null
