@@ -33,4 +33,25 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   thelook_ecommerce:
-    +materialized: table
+    +hours_to_expiration: 168
+    staging:
+      +materialized: table
+      +persist_docs: #Write all our column descriptions into BigQuery
+        relation: true
+        columns: true
+    intermediate:
+      +materialized: table
+      +persist_docs: #Write all our column descriptions into BigQuery
+        relation: true
+        columns: true
+    marts:
+      +materialized: table
+      +persist_docs: #Write all our column descriptions into BigQuery
+        relation: true
+        columns: true
+
+tests:
+  lessons:
+    +severity: warn
+    marts:
+      +severity: error  
