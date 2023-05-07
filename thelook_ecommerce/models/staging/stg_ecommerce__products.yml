@@ -6,9 +6,8 @@ models:
     columns: 
       - name: product_id
         tests:
-        - not_null
-        - unique
-      
+          - primary_key:
+              severity: error
       - name: cost
         description: "How much the product cost the business to purchase"
         tests:
@@ -29,4 +28,4 @@ models:
           - accepted_values:
               values:
                 - "Men"
-                #- "Women"
+                - "Women"
